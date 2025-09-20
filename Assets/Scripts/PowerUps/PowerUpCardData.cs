@@ -4,12 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PowerUpCardData", menuName = "Power-Up Card/New Card")]
 public class PowerUpCardData : ScriptableObject
 {
-    [SerializeField] int Id;
-    [SerializeField] Sprite SpriteRender;
-    [SerializeField] int Level;
-    [SerializeField] float Damage;
-    [Tooltip("1- Attack \n2- Defense \n3- Strategy")]
-    [SerializeField] int AbilityType;
-    [SerializeField] float Cooldown;
+    public Sprite sprite;
+    public int level;
+    public string description;
+    public float damage;
+    public int clones;
+    public int increaseShield;
+    public float coinMultiplier;
+    public int AbilityType;
 
 }

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa2b3453976930d40a420aa36bbff64e, type: 3}
-  m_Name: BonusDamageLv3
+  m_Name: ShieldLv1
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  level: 3
-  description: BonusLv3
-  damage: 2.5
+  level: 1
+  description: ShieldLv1
+  damage: 0
   clones: 0
-  AbilityType: 1
+  increaseShield: 5
+  AbilityType: 3

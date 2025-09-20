@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b3453976930d40a420aa36bbff64e, type: 3}
   m_Name: BonusDamageLv2
   m_EditorClassIdentifier: 
-  Id: 2
-  SpriteRender: {fileID: 0}
-  Name: Bonus Damage
-  Level: 2
-  Damage: 1.2
+  sprite: {fileID: 0}
+  level: 2
+  description: BonusLv2
+  damage: 2
+  clones: 0
   AbilityType: 1
