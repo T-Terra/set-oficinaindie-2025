@@ -19,7 +19,6 @@ public class FlippersScript : MonoBehaviour
 
     public void OnLeft(InputAction.CallbackContext context)
     {
-        Debug.Log(context.action);
 
         if (context.started)
         {
