@@ -79,10 +79,11 @@ public class Enemy : MonoBehaviour
         // Attack animation //! await ...
     }
 
-    virtual public async void OnHurt(int damage)
+    virtual public async void OnHurt(float damage)
     {
         // Hurt animation //! await ...
-        if (damage > _hitPoints) OnDie();
+        _hitPoints -= damage;
+        if (_hitPoints <= 0) OnDie();
     }
 
     virtual public async void OnDie()

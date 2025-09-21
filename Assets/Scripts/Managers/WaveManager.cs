@@ -94,18 +94,22 @@ public class WaveManager : MonoBehaviour
 
     void MoveWave()
     {
-        int enemiesCount = _enemies.Count;
-        for (int i = 0; i < enemiesCount; i++)
+        // list enemies to remove
+        List<Enemy> toRemove = new();
+        foreach (var enemy in _enemies)
         {
-            Enemy enemy = _enemies[i];
-
             if (enemy == null)
             {
-                _enemies.RemoveAt(i);
+                toRemove.Add(enemy);
                 continue;
             }
 
             enemy.OnMove(Vector2Int.down);
+        }
+
+        foreach (var enemy in toRemove)
+        {
+            _enemies.Remove(enemy);
         }
 
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6934570669923829623}
   m_Layer: 8
   m_Name: Warrior
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   _hitPoints: 0
   _damage: 5
   _range: 2
+  _xpValue: 3
   _position: {x: 0, y: 0}
   _collider: {fileID: 4604326877732971347}
   _rigidbody: {fileID: 6934570669923829623}

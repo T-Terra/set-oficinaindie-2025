@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6552765063254752056}
   m_Layer: 8
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   _hitPoints: 0
   _damage: 0
   _range: 0
+  _xpValue: 2
   _position: {x: 0, y: 0}
   _collider: {fileID: 3859414699165068109}
   _rigidbody: {fileID: 6552765063254752056}

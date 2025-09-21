@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4396345200052362944}
   m_Layer: 8
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   _hitPoints: 0
   _damage: 1
   _range: 8
+  _xpValue: 1
   _position: {x: 0, y: 0}
   _collider: {fileID: 2497781659113998041}
   _rigidbody: {fileID: 4396345200052362944}
