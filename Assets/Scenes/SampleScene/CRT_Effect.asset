@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.115
+    m_Value: 0.013
   cropToFit:
     m_OverrideState: 0
     m_Value: 0
@@ -146,10 +146,10 @@ MonoBehaviour:
     m_Value: 10
   intensity:
     m_OverrideState: 1
-    m_Value: 0.266
+    m_Value: 0.1
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 1
   texture:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 15946e8a88c42b840ad30ece65b1e666, type: 3}
+    m_Value: {fileID: 2800000, guid: e2477879a6cdd844a8e5149d75da169b, type: 3}
