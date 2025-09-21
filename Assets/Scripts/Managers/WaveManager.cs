@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
         Tank,
     }
 
-    [System.Serializable]
+    [Serializable]
     class SpawnRow
     {
         public List<Spawn> row = new();

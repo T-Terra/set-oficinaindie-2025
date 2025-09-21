@@ -17,6 +17,8 @@ public class CoinScript : MonoBehaviour
 
     void Restock()
     {
+        if (_collider.enabled) return; // already active
+
         _collider.enabled = true;
         _spriteRenderer.enabled = true;
     }

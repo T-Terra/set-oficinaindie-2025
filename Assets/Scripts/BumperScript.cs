@@ -18,6 +18,8 @@ public class BumperScript : MonoBehaviour
 
     void Restock()
     {
+        if (_collider.enabled) return; // already active
+
         _hitPoints = _maxHitPoints;
         _collider.enabled = true;
         _spriteRenderer.enabled = true;
@@ -26,9 +28,9 @@ public class BumperScript : MonoBehaviour
     [SerializeField] float _maxHitPoints = 3f;
     [SerializeField] float _hitPoints = 3f;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (--_hitPoints <= 0)
             {
