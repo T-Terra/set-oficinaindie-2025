@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1020966147971075492}
   - component: {fileID: 2497781659113998041}
   - component: {fileID: 4396345200052362944}
+  - component: {fileID: -4455833797798011928}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Enemy
@@ -138,6 +139,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!95 &-4455833797798011928
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002393993367230484}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddb15e35d9905c2419aa266759b7b274, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3611641092884014458
 GameObject:
   m_ObjectHideFlags: 0
