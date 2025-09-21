@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // Handle game over logic here
+        Retry.Instance.EnableHUDRetry(true);
         Debug.Log("Game Over!");
     }
 
