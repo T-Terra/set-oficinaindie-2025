@@ -33,8 +33,8 @@ public class PowerUpButton : MonoBehaviour
     // Quando o botão é clicado
     public void OnClick()
     {
-        Debug.Log($"Selecionou: {powerUpData.name} (Level {powerUpData.level})");
         // aqui você pode aplicar o efeito no jogador, ex:
-        // Player.Instance.ApplyPowerUp(powerUpData);
+        GameManager.Instance.playerData.AddPowerUpCard(powerUpData);
+        PowerUpSelector.Instance.DiseblePowerUpHud(false);
     }
 }
