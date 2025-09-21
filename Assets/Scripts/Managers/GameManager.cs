@@ -23,4 +23,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Up!");
     }
 
+    public void Pause(bool pause)
+    {
+        Time.timeScale = pause ? 0 : 1;
+    }
+
 }
