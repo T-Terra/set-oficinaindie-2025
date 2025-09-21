@@ -11,6 +11,13 @@ public class GameManager : MonoBehaviour
 
     public PlayerData playerData;
 
+    public void LoseBall()
+    {
+        // Handle ball loss logic here
+        LauncherScript.canLaunch = true;
+        Debug.Log("Ball Lost!");
+    }
+
     public void GameOver()
     {
         // Handle game over logic here

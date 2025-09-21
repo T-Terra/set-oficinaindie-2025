@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,8 +11,8 @@ public class BallScript : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _targetSpeed = 10f;
 
-    [Header("Internal")]
-    [SerializeField] bool _isClone = false;
+    [Header("Clones")]
+    public bool isClone = false;
     [SerializeField] List<BallScript> _clones = new ();
 
     void FixedUpdate()
@@ -28,7 +29,7 @@ public class BallScript : MonoBehaviour
 
     void OnDestroy()
     {
-        if (_isClone) return;
+        if (isClone) return;
         foreach (var clone in _clones)
         {
             if (clone != null) Destroy(clone.gameObject);
@@ -39,20 +40,23 @@ public class BallScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var data = GameManager.Instance.playerData;
-        if (!_isClone && _clones.Count < data.clones) {
+        _clones = _clones.Where(c => c != null).ToList();
+        if (!isClone && _clones.Count < data.clones)
+        {
             var cloneObj = Instantiate(
                 gameObject,
-                transform.position + (Vector3)_body.linearVelocity.normalized * -0.1f,
+                transform.position + (Vector3)_body.linearVelocity.normalized * -0.2f,
                 Quaternion.identity
             );
             var clone = cloneObj.GetComponent<BallScript>();
-            clone._isClone = true;
+            var cloneBody = cloneObj.GetComponent<Rigidbody2D>();
+            clone.isClone = true;
             _clones.Add(clone);
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            float damage = _isClone ? data.cloneDamage : data.damage;
+            float damage = isClone ? data.cloneDamage : data.damage;
             collision.gameObject.GetComponent<Enemy>().OnHurt(damage);
         }
     }
