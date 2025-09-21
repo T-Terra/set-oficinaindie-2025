@@ -12,6 +12,6 @@ public class Archer : Enemy
 
     void Shoot()
     {
-        Instantiate(_projectilePrefab, Vector3.down, Quaternion.identity);
+        // Instantiate(_projectilePrefab, Vector3.down, Quaternion.identity);
     }
 }

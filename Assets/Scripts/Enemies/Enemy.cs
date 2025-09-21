@@ -7,32 +7,71 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float _hitPoints;
     [SerializeField] protected int _damage;
     [SerializeField] protected int _range;
+    [SerializeField] protected int _xpValue;
 
     [Header("Info")]
     [SerializeField] protected Vector2Int _position;
 
     [Header("Components")]
     [SerializeField] protected Collider2D _collider;
+    [SerializeField] protected Rigidbody2D _rigidbody;
+
+    [Header("Movement")]
+    [SerializeField] protected float _startPosistionY = 0f;
+    [SerializeField] protected float _endPosistionY = 0f;
+    [SerializeField] protected float _moveDuration = 0.8f;
+    [SerializeField] protected float _elapsedTime = 0f;
+
+    void Awake()
+    {
+        _startPosistionY = transform.position.y;
+        _endPosistionY = transform.position.y;
+    }
 
 
-//! Estou desabilitando temporariamente um warning nas linhas "#pragma"
+    void FixedUpdate()
+    {
+        if (_startPosistionY <= _endPosistionY) return;
+
+        _elapsedTime += Time.fixedDeltaTime;
+        if (_elapsedTime < _moveDuration)
+        {
+            float newY = Mathf.Lerp(_startPosistionY, _endPosistionY, _elapsedTime / _moveDuration);
+            _rigidbody.MovePosition(new Vector2(transform.position.x, newY));
+            return;
+        }
+
+        _elapsedTime = 0f;
+        _startPosistionY = _endPosistionY;
+        _rigidbody.MovePosition(new Vector2(transform.position.x, _endPosistionY));
+    }
+
+
+    //! Estou desabilitando temporariamente um warning nas linhas "#pragma"
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     virtual public async void OnSpawn(Vector2Int position)
     {
+        // Spawn animation //! await ...
         _hitPoints = _maxHitPoints;
         _position = position;
         _collider.enabled = true;
-        // Spawn animation //! await ...
     }
 
     virtual public async void OnMove(Vector2Int movement)
     {
-        // Move animation //! await ...
-        // if (newPosition < 0) uhhh destroy?? (chegou na barrier)
-        _position += movement;
 
-        //? temp
-        transform.position += (Vector3Int)movement;
+        _position += movement;
+        if (_position.y < 0)
+        {
+            OnDie(); // na real é algo diferente de só morrer, ele não vai dar XP nem nada e ainda vai dar dano na barreira
+            return;
+        }
+
+        _endPosistionY = transform.position.y + movement.y;
+
+        // Move animation //! await ...
+        // o movimento é baseado em física, a animação é só visual
+        OnAttack();
     }
 
     virtual public async void OnAttack()
@@ -50,7 +89,7 @@ public class Enemy : MonoBehaviour
     {
         _collider.enabled = false;
         // Death animation //! await ...
-        // Free tile
+        GameManager.Instance.playerData.AddExperience(_xpValue);
         Destroy(gameObject);
     }
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously

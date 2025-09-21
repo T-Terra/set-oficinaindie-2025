@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -51,14 +50,16 @@ public class WaveManager : MonoBehaviour
         new SpawnRow( Spawn.Empty  , Spawn.Tank   , Spawn.Warrior, Spawn.Warrior, Spawn.Tank   , Spawn.Empty   ),
     };
 
-    void SpawnWave()
+    async void SpawnWave()
     {
+        // Small delay before spawning to wait for move animation
+        await System.Threading.Tasks.Task.Delay(1000);
+
         if (_currentWave >= spawnOrder.Count) return;
 
         for (int x = 0; x < 6; x++)
         {
             Vector3Int cellPosition = new(x, 7);
-            // if (!_tilemap.HasTile(cellPosition)) continue;
 
             Vector3 worldPosition = _tilemap.CellToWorld(cellPosition);
             worldPosition += new Vector3(0.5f, 0.5f, 0f); // center of tile
@@ -105,6 +106,7 @@ public class WaveManager : MonoBehaviour
 
             enemy.OnMove(Vector2Int.down);
         }
+
     }
 
 
@@ -115,7 +117,6 @@ public class WaveManager : MonoBehaviour
         if (_currentTime < _currentWave * _timeBetweenWaves) return;
         _currentWave++;
 
-        // to update wave:
         MoveWave();
         SpawnWave();
 

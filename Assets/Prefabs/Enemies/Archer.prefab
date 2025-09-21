@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8365137190661110417}
   - component: {fileID: 1020966147971075492}
   - component: {fileID: 2497781659113998041}
+  - component: {fileID: 4396345200052362944}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Untagged
@@ -52,6 +53,11 @@ MonoBehaviour:
   _range: 8
   _position: {x: 0, y: 0}
   _collider: {fileID: 2497781659113998041}
+  _rigidbody: {fileID: 4396345200052362944}
+  _startPosistionY: 0
+  _endPosistionY: 0
+  _moveDuration: 0.8
+  _elapsedTime: 0
   _projectilePrefab: {fileID: 0}
 --- !u!60 &2497781659113998041
 PolygonCollider2D:
@@ -103,6 +109,33 @@ PolygonCollider2D:
       - {x: -0.4, y: -0.35093337}
       - {x: 0.4, y: -0.35093337}
   m_UseDelaunayMesh: 0
+--- !u!50 &4396345200052362944
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002393993367230484}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 5
 --- !u!1 &3611641092884014458
 GameObject:
   m_ObjectHideFlags: 0
