@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,10 +33,9 @@ public class PowerUpSelector : MonoBehaviour
 
     public List<PowerUpCardData> GetRandomPowerUps()
     {
-        List<PowerUpCardData> tempList = new List<PowerUpCardData>(availablePowerUps);
         List<PowerUpCardData> selected = new List<PowerUpCardData>();
 
-        var groups = tempList
+        var groups = availablePowerUps
             .GroupBy(p => p.AbilityType)
             .OrderBy(p => Random.value);
 
@@ -55,6 +52,8 @@ public class PowerUpSelector : MonoBehaviour
 
     public void EnablePowerUpHud()
     {
+        GameManager.Instance.Pause(true);
+
         List<PowerUpCardData> selected = GetRandomPowerUps();
         foreach (PowerUpCardData card in selected)
         {
@@ -79,9 +78,15 @@ public class PowerUpSelector : MonoBehaviour
     {
         foreach (Transform child in parentObject.transform)
         {
-            if (parentObject.transform.childCount != 0) Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
         EnablePowerUpHud();
+    }
+
+    public void RerollPowerUp()
+    {
+        RollPowerUp();
+        GameManager.Instance.playerData.SpendCoins(priceReroll);
     }
 
     public void HandleRerollButton(bool enable)
@@ -89,8 +94,10 @@ public class PowerUpSelector : MonoBehaviour
         RollButtonObj.GetComponent<Button>().interactable = enable;
     }
 
-    public void DiseblePowerUpHud( bool enable )
+    public void DiseblePowerUpHud(bool enable)
     {
         HUDPowerupObj.SetActive(enable);
+
+        GameManager.Instance.Pause(false);
     }
 }
