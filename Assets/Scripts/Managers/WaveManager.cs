@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -18,7 +19,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject _archerPrefab;
     [SerializeField] GameObject _tankPrefab;
 
-    [System.Serializable]
+    [Serializable]
     enum Spawn
     {
         Empty,
@@ -109,7 +110,7 @@ public class WaveManager : MonoBehaviour
 
     }
 
-
+    public static Action OnWaveStart;
 
     void Update()
     {
@@ -117,6 +118,8 @@ public class WaveManager : MonoBehaviour
         if (_currentTime < _currentWave * _timeBetweenWaves) return;
         _currentWave++;
 
+
+        OnWaveStart?.Invoke();
         MoveWave();
         SpawnWave();
 
