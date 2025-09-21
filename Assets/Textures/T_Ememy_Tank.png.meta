@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      T_Ememy_Tank_0: -2286133959630930930
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

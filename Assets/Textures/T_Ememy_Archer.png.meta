@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      T_Ememy_Archer_0: 3981492922286846317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

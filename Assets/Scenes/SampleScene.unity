@@ -832,6 +832,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUpPrefab: {fileID: 3170220469809006909, guid: 58d5a5175b4a62e46af2d7a6860cd756, type: 3}
   parentObject: {fileID: 2038830984}
+  priceReroll: 500
+  RollButtonObj: {fileID: 936609448}
+  HUDPowerupObj: {fileID: 1671705360}
   allPowerUps:
   - {fileID: 11400000, guid: 9fce0f6b9dc08324e8485e5521d8b15f, type: 2}
   - {fileID: 11400000, guid: 03cc98601d8512349994d73111133f7b, type: 2}
@@ -843,7 +846,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb4121da43fa24a448b171c51db61be9, type: 2}
   availablePowerUps: []
   numberToSelect: 3
-  RollButton: {fileID: 936609448}
 --- !u!1001 &369510647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2839,7 +2841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &936609449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5033,7 +5035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1671705361
 RectTransform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         // Handle game over logic here
+        PowerUpSelector.Instance.RollPowerUp();
         Debug.Log("Level Up!");
     }
 

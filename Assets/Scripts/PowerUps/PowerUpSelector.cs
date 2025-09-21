@@ -3,15 +3,25 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpSelector : MonoBehaviour
 {
+    public static PowerUpSelector Instance;
+
     public GameObject PowerUpPrefab; // Prefab que você quer instanciar
     public Transform parentObject; // Objeto que será o pai
+    public int priceReroll = 500;
+    [SerializeField] GameObject RollButtonObj;
+    [SerializeField] GameObject HUDPowerupObj;
     public List<PowerUpCardData> allPowerUps;
     public List<PowerUpCardData> availablePowerUps;
     public int numberToSelect = 3;
-    [SerializeField] GameObject RollButton;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -20,7 +30,7 @@ public class PowerUpSelector : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public List<PowerUpCardData> GetRandomPowerUps()
@@ -53,7 +63,16 @@ public class PowerUpSelector : MonoBehaviour
             PowerUpButton powerUpButton = instance.GetComponent<PowerUpButton>();
             powerUpButton.Setup(card);
         }
-        RollButton.SetActive(true);
+
+        if (GameManager.Instance.playerData.coins <= priceReroll)
+        {
+            HandleRerollButton(false);
+        }
+        else
+        {
+            HandleRerollButton(true);
+        }
+        HUDPowerupObj.SetActive(true);
     }
 
     public void RollPowerUp()
@@ -63,5 +82,15 @@ public class PowerUpSelector : MonoBehaviour
             if (parentObject.transform.childCount != 0) Destroy(child.gameObject);
         }
         EnablePowerUpHud();
+    }
+
+    public void HandleRerollButton(bool enable)
+    {
+        RollButtonObj.GetComponent<Button>().interactable = enable;
+    }
+
+    public void DiseblePowerUpHud( bool enable )
+    {
+        HUDPowerupObj.SetActive(enable);
     }
 }
