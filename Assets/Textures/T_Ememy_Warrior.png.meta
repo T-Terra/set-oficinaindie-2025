@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      T_Ememy_Warrior_0: 6557046055612074735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

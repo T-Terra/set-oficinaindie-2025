@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] int _currentWave = 0;
 
     [Header("Tilemap")]
-    [SerializeField] Tilemap _tilemap;
+    [SerializeField] Grid _grid;
     [SerializeField] List<Enemy> _enemies;
 
     [Header("Enemy Prefabs")]
@@ -60,10 +59,13 @@ public class WaveManager : MonoBehaviour
 
         for (int x = 0; x < 6; x++)
         {
-            Vector3Int cellPosition = new(x, 7);
+            Vector2Int cellPosition = new(x, 7);
 
-            Vector3 worldPosition = _tilemap.CellToWorld(cellPosition);
-            worldPosition += new Vector3(0.5f, 0.5f, 0f); // center of tile
+            Vector2 gridSize = new(_grid.cellSize.x, _grid.cellSize.y);
+            Vector2 gridCenter = new(_grid.transform.position.x, _grid.transform.position.y);
+
+            Vector2 worldPosition = cellPosition - new Vector2Int(3, 4) + new Vector2(0.5f, 0.5f);
+            worldPosition = gridCenter + worldPosition * gridSize;
 
             int index = x;
             if (index < 0 || index >= spawnOrder[_currentWave].row.Count) continue;
@@ -71,9 +73,10 @@ public class WaveManager : MonoBehaviour
             Spawn spawnType = spawnOrder[_currentWave].row[index];
             if (spawnType == Spawn.Empty) continue;
 
-            GameObject enemyObject = Instantiate(SelectSpawn(spawnType), worldPosition, Quaternion.identity, transform);
+            GameObject enemyObject = Instantiate(SelectSpawn(spawnType), worldPosition, Quaternion.identity, _grid.transform);
             Enemy enemy = enemyObject.GetComponent<Enemy>();
 
+            enemy.moveDistance = gridSize.y;
             enemy.OnSpawn(new Vector2Int(x, 7));
 
             _enemies.Add(enemy);

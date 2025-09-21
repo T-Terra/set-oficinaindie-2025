@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float _endPosistionY = 0f;
     [SerializeField] protected float _moveDuration = 0.8f;
     [SerializeField] protected float _elapsedTime = 0f;
+    public float moveDistance = 1.0f;
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        _endPosistionY = transform.position.y + movement.y;
+        _endPosistionY = transform.position.y + movement.y * moveDistance;
 
         // Move animation //! await ...
         // o movimento é baseado em física, a animação é só visual
