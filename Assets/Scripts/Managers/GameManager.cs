@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 
     public PlayerData playerData;
 
+    void Start()
+    {
+        Pause(false);
+    }
+
     public void LoseBall()
     {
         // Handle ball loss logic here

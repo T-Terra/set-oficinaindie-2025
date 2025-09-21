@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         _position += movement;
         if (_position.y < 0)
         {
-            OnDie(); // na real é algo diferente de só morrer, ele não vai dar XP nem nada e ainda vai dar dano na barreira
+            OnEnd();
             return;
         }
 
@@ -73,6 +73,12 @@ public class Enemy : MonoBehaviour
         // Move animation //! await ...
         // o movimento é baseado em física, a animação é só visual
         OnAttack();
+    }
+
+    virtual public async void OnEnd()
+    {
+        // End animation //! await ...
+        Destroy(gameObject);
     }
 
     virtual public async void OnAttack()

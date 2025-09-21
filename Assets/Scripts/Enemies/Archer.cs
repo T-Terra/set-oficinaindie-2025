@@ -12,6 +12,12 @@ public class Archer : Enemy
 
     void Shoot()
     {
-        // Instantiate(_projectilePrefab, Vector3.down, Quaternion.identity);
+        // angle from archer to player
+        // player position is always (-0.5,0)
+        var direction = new Vector3(-0.5f - transform.position.x, -5.0f - transform.position.y);
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+        var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        Instantiate(_projectilePrefab, transform.position, rotation);
     }
 }
