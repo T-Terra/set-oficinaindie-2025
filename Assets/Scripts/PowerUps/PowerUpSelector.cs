@@ -1,30 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUpSelector : MonoBehaviour
 {
     public GameObject PowerUpPrefab; // Prefab que você quer instanciar
     public Transform parentObject; // Objeto que será o pai
+    public List<PowerUpCardData> allPowerUps;
+    public List<PowerUpCardData> availablePowerUps;
+    public int numberToSelect = 3;
+    [SerializeField] GameObject RollButton;
 
     void Start()
     {
-        List<PowerUpCardData> selecionados = GetRandomPowerUps();
-        foreach (PowerUpCardData p in selecionados)
-        {
-            GameObject instance = Instantiate(PowerUpPrefab, parentObject);
-            Debug.Log("Selecionado: " + p.description);
-            instance.GetComponentInChildren<TMP_Text>().text = p.description;
-        }
+        availablePowerUps = new List<PowerUpCardData>(allPowerUps);
     }
 
-    public List<PowerUpCardData> allPowerUps;
-    public int numberToSelect = 3;
+    void Update()
+    {
+        
+    }
 
     public List<PowerUpCardData> GetRandomPowerUps()
     {
-        List<PowerUpCardData> tempList = new List<PowerUpCardData>(allPowerUps);
+        List<PowerUpCardData> tempList = new List<PowerUpCardData>(availablePowerUps);
         List<PowerUpCardData> selected = new List<PowerUpCardData>();
 
         var groups = tempList
@@ -40,5 +41,27 @@ public class PowerUpSelector : MonoBehaviour
         }
 
         return selected;
+    }
+
+    public void EnablePowerUpHud()
+    {
+        List<PowerUpCardData> selected = GetRandomPowerUps();
+        foreach (PowerUpCardData card in selected)
+        {
+            GameObject instance = Instantiate(PowerUpPrefab, parentObject);
+
+            PowerUpButton powerUpButton = instance.GetComponent<PowerUpButton>();
+            powerUpButton.Setup(card);
+        }
+        RollButton.SetActive(true);
+    }
+
+    public void RollPowerUp()
+    {
+        foreach (Transform child in parentObject.transform)
+        {
+            if (parentObject.transform.childCount != 0) Destroy(child.gameObject);
+        }
+        EnablePowerUpHud();
     }
 }
