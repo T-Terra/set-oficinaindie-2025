@@ -42,7 +42,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     List<SpawnRow> spawnOrder = new()
     {
-        new SpawnRow( Spawn.Empty  , Spawn.Empty  , Spawn.Warrior, Spawn.Empty  , Spawn.Empty  , Spawn.Empty   ),
+        new SpawnRow( Spawn.Archer , Spawn.Empty  , Spawn.Warrior, Spawn.Empty  , Spawn.Empty  , Spawn.Empty   ),
         new SpawnRow( Spawn.Empty  , Spawn.Empty  , Spawn.Archer , Spawn.Empty  , Spawn.Empty  , Spawn.Empty   ),
         new SpawnRow( Spawn.Empty  , Spawn.Empty  , Spawn.Tank   , Spawn.Empty  , Spawn.Empty  , Spawn.Empty   ),
         new SpawnRow( Spawn.Empty  , Spawn.Tank   , Spawn.Warrior, Spawn.Archer , Spawn.Empty  , Spawn.Empty   ),
@@ -68,9 +68,9 @@ public class WaveManager : MonoBehaviour
             worldPosition = gridCenter + worldPosition * gridSize;
 
             int index = x;
-            if (index < 0 || index >= spawnOrder[_currentWave].row.Count) continue;
+            if (index < 0 || index >= spawnOrder[_currentWave - 1].row.Count) continue;
 
-            Spawn spawnType = spawnOrder[_currentWave].row[index];
+            Spawn spawnType = spawnOrder[_currentWave - 1].row[index];
             if (spawnType == Spawn.Empty) continue;
 
             GameObject enemyObject = Instantiate(SelectSpawn(spawnType), worldPosition, Quaternion.identity, _grid.transform);

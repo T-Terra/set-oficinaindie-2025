@@ -90,7 +90,7 @@
                     "name": "Previous",
                     "type": "Button",
                     "id": "2776c80d-3c14-4091-8c56-d04ced07a2b0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -524,6 +524,17 @@
                 },
                 {
                     "name": "",
+                    "id": "82779406-f621-4339-aa52-f02430fcb927",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Launch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4d1d4b19-ea92-4886-84b8-9bc4e390860d",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -546,6 +557,28 @@
                 },
                 {
                     "name": "",
+                    "id": "aa708065-71d0-4a6e-a1ca-ccc718212b91",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b227474-5b8a-4f28-a984-add65e58bd0f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6f116b4e-3ac9-4301-ac6b-b621c8478b15",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -562,6 +595,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "805fafff-653b-49f6-ae0e-b89cb5abbe81",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83e35616-d721-4e7a-8b09-8511d2b9a1d9",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false

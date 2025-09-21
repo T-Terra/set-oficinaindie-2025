@@ -7,7 +7,8 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
-        _rigidbody.linearVelocity = Vector2.down * _speed;
+        // go in the direction the arrow is facing
+        _rigidbody.linearVelocity = -transform.up * _speed;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

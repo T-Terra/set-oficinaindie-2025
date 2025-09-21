@@ -72,7 +72,6 @@ public class Enemy : MonoBehaviour
 
         // Move animation //! await ...
         // o movimento é baseado em física, a animação é só visual
-        OnAttack();
     }
 
     virtual public async void OnEnd()
