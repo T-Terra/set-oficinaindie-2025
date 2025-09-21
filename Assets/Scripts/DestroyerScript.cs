@@ -6,7 +6,9 @@ public class DestroyerScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // GameManager.Instance.LoseBall();
+            var ball = other.GetComponent<BallScript>();
+            if (!ball.isClone) GameManager.Instance.LoseBall();
+
             Destroy(other.gameObject);
         }
     }

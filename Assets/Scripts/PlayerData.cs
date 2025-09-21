@@ -87,9 +87,9 @@ public class PlayerData
             if (card.clones > 0)
             {
                 clones = card.clones;
-                cloneDamage += card.damage;
+                cloneDamage = damage * card.damage;
             }
-            else if (card.damage > 0) damage += card.damage;
+            else if (card.damage > 0) damage = card.damage;
             if (card.coinMultiplier > 0) coinMultiplier = card.coinMultiplier;
         }
     }

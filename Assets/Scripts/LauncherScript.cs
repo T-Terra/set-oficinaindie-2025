@@ -5,6 +5,7 @@ public class LauncherScript : MonoBehaviour
 {
     [Header("Ball Setup")]
     [SerializeField] GameObject _ballPrefab;
+    public static bool canLaunch = true;
 
     [Header("Launcher Settings")]
     [SerializeField] float _baseForce = 25f;
@@ -16,9 +17,13 @@ public class LauncherScript : MonoBehaviour
     [SerializeField] bool _isCharging = false;
 
 
+
     [ContextMenu("Launch Ball")]
     void LaunchBall(float? forceValue = null)
     {
+        if (!canLaunch) return;
+        canLaunch = false;
+
         GameObject ballInstance = Instantiate(_ballPrefab, transform);
         Rigidbody2D ballRB = ballInstance.GetComponent<Rigidbody2D>();
 
