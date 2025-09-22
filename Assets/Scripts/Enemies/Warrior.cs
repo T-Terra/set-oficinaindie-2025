@@ -1,24 +1,22 @@
-using UnityEngine;
+using System.Collections;
 
 public class Warrior : Enemy
 {
 
-    public override void OnEnd()
+    protected override IEnumerator EndRoutine()
     {
         OnAttack();
-
-        base.OnEnd();
+        yield return StartCoroutine(base.EndRoutine());
     }
 
-    public override void OnAttack()
+    protected override IEnumerator AttackRoutine()
     {
-        base.OnAttack();
+        yield return StartCoroutine(base.AttackRoutine());
         Attack();
     }
 
     void Attack()
     {
-        Debug.Log("Warrior Attack!");
         GameManager.Instance.playerData.TakeDamage(_damage);
         return;
     }

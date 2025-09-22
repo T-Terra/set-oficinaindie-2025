@@ -56,6 +56,7 @@ MonoBehaviour:
   _position: {x: 0, y: 0}
   _collider: {fileID: 4604326877732971347}
   _rigidbody: {fileID: 6934570669923829623}
+  _animator: {fileID: -5452024114495053069}
   _startPosistionY: 0
   _endPosistionY: 0
   _moveDuration: 0.8

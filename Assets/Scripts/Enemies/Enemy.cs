@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
     [Header("Components")]
     [SerializeField] protected Collider2D _collider;
     [SerializeField] protected Rigidbody2D _rigidbody;
+    [SerializeField] protected Animator _animator;
 
     [Header("Movement")]
     [SerializeField] protected float _startPosistionY = 0f;
@@ -48,57 +50,100 @@ public class Enemy : MonoBehaviour
     }
 
 
-    //! Estou desabilitando temporariamente um warning nas linhas "#pragma"
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    virtual public async void OnSpawn(Vector2Int position)
+
+    public void OnSpawn(Vector2Int position)
     {
-        // Spawn animation //! await ...
-        _hitPoints = _maxHitPoints;
-        _position = position;
-        _collider.enabled = true;
+        _animator.Play("Spawn");
+        StartCoroutine(SpawnRoutine(position));
     }
 
-    virtual public async void OnMove(Vector2Int movement)
+    public void OnMove(Vector2Int movement)
     {
 
         _position += movement;
         if (_position.y < 0)
         {
-            OnEnd();
+            StartCoroutine(EndRoutine());
             return;
         }
 
         _endPosistionY = transform.position.y + movement.y * moveDistance;
 
-        // Move animation //! await ...
-        // o movimento é baseado em física, a animação é só visual
+        _animator.Play("Move");
+        StartCoroutine(MoveRoutine(movement));
     }
 
-    virtual public async void OnEnd()
+    public void OnEnd()
     {
-        // End animation //! await ...
+        _animator.Play("End");
+        StartCoroutine(EndRoutine());
+    }
+
+    public void OnAttack()
+    {
+        _animator.Play("Attack");
+        StartCoroutine(AttackRoutine());
+    }
+
+    public void OnHurt(float damage)
+    {
+        _animator.Play("Hurt");
+        StartCoroutine(HurtRoutine(damage));
+    }
+
+    public void OnDie()
+    {
+        _collider.enabled = false;
+        _animator.Play("Die");
+        StartCoroutine(DieRoutine());
+    }
+
+
+    virtual protected IEnumerator SpawnRoutine(Vector2Int position)
+    {
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        _hitPoints = _maxHitPoints;
+        _position = position;
+        _collider.enabled = true;
+    }
+
+    virtual protected IEnumerator MoveRoutine(Vector2Int movement)
+    {
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        _elapsedTime = 0f;
+        _startPosistionY = _endPosistionY;
+        if (_rigidbody != null) _rigidbody.MovePosition(new Vector2(transform.position.x, _endPosistionY));
+
+    }
+
+    virtual protected IEnumerator EndRoutine()
+    {
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
         Destroy(gameObject);
     }
 
-    virtual public async void OnAttack()
+    virtual protected IEnumerator AttackRoutine()
     {
-        // Attack animation //! await ...
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
-    virtual public async void OnHurt(float damage)
+    virtual protected IEnumerator HurtRoutine(float damage)
     {
-        // Hurt animation //! await ...
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
         _hitPoints -= damage;
-        if (_hitPoints <= 0) OnDie();
+        if (_hitPoints <= 0) StartCoroutine(DieRoutine());
     }
 
-    virtual public async void OnDie()
+    virtual protected IEnumerator DieRoutine()
     {
-        _collider.enabled = false;
-        // Death animation //! await ...
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
         GameManager.Instance.playerData.AddExperience(_xpValue);
         Destroy(gameObject);
     }
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
 }
