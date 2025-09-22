@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     public void OnSpawn(Vector2Int position)
     {
-        _animator.Play("Spawn");
+        //_animator.Play("Spawn");
         StartCoroutine(SpawnRoutine(position));
     }
 
@@ -69,32 +69,32 @@ public class Enemy : MonoBehaviour
 
         _endPosistionY = transform.position.y + movement.y * moveDistance;
 
-        _animator.Play("Move");
+        //_animator.Play("Move");
         StartCoroutine(MoveRoutine(movement));
     }
 
     public void OnEnd()
     {
-        _animator.Play("End");
+        //_animator.Play("End");
         StartCoroutine(EndRoutine());
     }
 
     public void OnAttack()
     {
-        _animator.Play("Attack");
+        //_animator.Play("Attack");
         StartCoroutine(AttackRoutine());
     }
 
     public void OnHurt(float damage)
     {
-        _animator.Play("Hurt");
+        //_animator.Play("Hurt");
         StartCoroutine(HurtRoutine(damage));
     }
 
     public void OnDie()
     {
         _collider.enabled = false;
-        _animator.Play("Die");
+        //_animator.Play("Die");
         StartCoroutine(DieRoutine());
     }
 
