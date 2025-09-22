@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GateScript : MonoBehaviour
+public class OpenGateScript : MonoBehaviour
 {
     [SerializeField] Collider2D _gateCollider;
 
@@ -8,7 +8,7 @@ public class GateScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            _gateCollider.enabled = true;
+            _gateCollider.enabled = false;
         }
     }
 }

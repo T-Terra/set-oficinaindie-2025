@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8439853491126077201, guid: b0f45da8b1287374d97079a5dc4984de, type: 3}
+  m_Sprite: {fileID: -3134840773373991842, guid: 7ea955e16c8492a43bf722a5ce0885b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,6 +136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1251330663019794515}
   _spriteRenderer: {fileID: 4899541710833504104}
+  _sprites:
+  - {fileID: -3134840773373991842, guid: 7ea955e16c8492a43bf722a5ce0885b9, type: 3}
+  - {fileID: 1498862558921638414, guid: 871190e1c0477a7459e3d78b29e44f95, type: 3}
+  - {fileID: 1134275494706944322, guid: ee763f45f14f0f646bec8b6a9956b39b, type: 3}
   _maxHitPoints: 3
   _hitPoints: 3
 --- !u!70 &1251330663019794515
