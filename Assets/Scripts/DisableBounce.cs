@@ -3,12 +3,18 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DisableBounce : MonoBehaviour
 {
+
+    [SerializeField] PhysicsMaterial2D _notBouncy;
+    [SerializeField] PhysicsMaterial2D _bouncy;
+    
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent<Rigidbody2D>(out var ballBody))
-                ballBody.sharedMaterial.bounciness = 0f;
+                ballBody.sharedMaterial = _notBouncy;
         }
     }
 
@@ -17,7 +23,7 @@ public class DisableBounce : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent<Rigidbody2D>(out var ballBody))
-                ballBody.sharedMaterial.bounciness = 1f;
+                ballBody.sharedMaterial = _bouncy;
         }
     }
 }

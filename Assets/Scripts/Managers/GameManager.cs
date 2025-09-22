@@ -29,21 +29,18 @@ public class GameManager : MonoBehaviour
     {
         // Handle ball loss logic here
         LauncherScript.canLaunch = true;
-        Debug.Log("Ball Lost!");
     }
 
     public void GameOver()
     {
         // Handle game over logic here
         Retry.Instance.EnableHUDRetry(true);
-        Debug.Log("Game Over!");
     }
 
     public void LevelUp()
     {
         // Handle game over logic here
         PowerUpSelector.Instance.RollPowerUp();
-        Debug.Log("Level Up!");
     }
 
     public void Pause(bool pause)
