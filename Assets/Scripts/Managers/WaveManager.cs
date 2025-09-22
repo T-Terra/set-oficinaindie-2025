@@ -53,10 +53,11 @@ public class WaveManager : MonoBehaviour
         new SpawnRow( Spawn.Empty  , Spawn.Tank   , Spawn.Warrior, Spawn.Warrior, Spawn.Tank   , Spawn.Empty   ),
     };
 
-    async void SpawnWave()
+    private System.Collections.IEnumerator SpawnWave()
     {
         // Small delay before spawning to wait for move animation
-        await System.Threading.Tasks.Task.Delay(1000);
+        yield return new WaitForSeconds(1f);
+        //await System.Threading.Tasks.Task.Delay(1000);
         // If current wave is beyond defined spawnOrder, generate a random row
         bool useDefinedRow = _currentWave - 1 >= 0 && _currentWave - 1 < spawnOrder.Count;
 
@@ -165,6 +166,6 @@ public class WaveManager : MonoBehaviour
 
         OnWaveStart?.Invoke();
         MoveWave();
-        SpawnWave();
+        StartCoroutine(SpawnWave());
     }
 }
