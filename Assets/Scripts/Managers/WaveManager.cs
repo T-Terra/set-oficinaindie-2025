@@ -57,8 +57,8 @@ public class WaveManager : MonoBehaviour
     {
         // Small delay before spawning to wait for move animation
         await System.Threading.Tasks.Task.Delay(1000);
-
-        if (_currentWave >= spawnOrder.Count) return;
+        // If current wave is beyond defined spawnOrder, generate a random row
+        bool useDefinedRow = _currentWave - 1 >= 0 && _currentWave - 1 < spawnOrder.Count;
 
         for (int x = 0; x < 6; x++)
         {
@@ -70,10 +70,21 @@ public class WaveManager : MonoBehaviour
             Vector2 worldPosition = cellPosition - new Vector2Int(3, 4) + new Vector2(0.5f, 0.5f);
             worldPosition = gridCenter + worldPosition * gridSize;
 
-            int index = x;
-            if (index < 0 || index >= spawnOrder[_currentWave - 1].row.Count) continue;
+            Spawn spawnType;
 
-            Spawn spawnType = spawnOrder[_currentWave - 1].row[index];
+            if (useDefinedRow)
+            {
+                int index = x;
+                if (index < 0 || index >= spawnOrder[_currentWave - 1].row.Count) continue;
+
+                spawnType = spawnOrder[_currentWave - 1].row[index];
+            }
+            else
+            {
+                // Not in spawnOrder: generate a random spawn with Empty having 3x weight
+                spawnType = PickWeightedSpawn();
+            }
+
             if (spawnType == Spawn.Empty) continue;
 
             GameObject enemyObject = Instantiate(SelectSpawn(spawnType), worldPosition, Quaternion.identity, _grid.transform);
@@ -84,6 +95,27 @@ public class WaveManager : MonoBehaviour
 
             _enemies.Add(enemy);
         }
+    }
+
+    // Picks a spawn type randomly where Empty has triple the chance of other types
+    Spawn PickWeightedSpawn()
+    {
+        // Define weights: Empty = 3, Warrior = 1, Archer = 1, Tank = 1
+        int emptyWeight = 3;
+        int warriorWeight = 1;
+        int archerWeight = 1;
+        int tankWeight = 1;
+
+        int total = emptyWeight + warriorWeight + archerWeight + tankWeight;
+        int r = UnityEngine.Random.Range(0, total);
+
+        if (r < emptyWeight) return Spawn.Empty;
+        r -= emptyWeight;
+        if (r < warriorWeight) return Spawn.Warrior;
+        r -= warriorWeight;
+        if (r < archerWeight) return Spawn.Archer;
+        r -= archerWeight;
+        return Spawn.Tank;
     }
 
     GameObject SelectSpawn(Spawn type)
