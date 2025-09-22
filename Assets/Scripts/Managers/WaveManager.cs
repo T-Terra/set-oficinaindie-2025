@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] int _timeBetweenWaves = 20;
     [SerializeField] float _currentTime = 0f;
     [SerializeField] int _currentWave = 0;
+    [SerializeField] TMP_Text Text_Wave;
+    [SerializeField] TMP_Text Text_Time;
 
     [Header("Tilemap")]
     [SerializeField] Grid _grid;
@@ -121,6 +124,8 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+        Text_Wave.text = _currentWave.ToString();
+        Text_Time.text = _currentTime.ToString("0");
         _currentTime += Time.deltaTime;
         if (_currentTime < _currentWave * _timeBetweenWaves) return;
         _currentWave++;
@@ -129,6 +134,5 @@ public class WaveManager : MonoBehaviour
         OnWaveStart?.Invoke();
         MoveWave();
         SpawnWave();
-
     }
 }

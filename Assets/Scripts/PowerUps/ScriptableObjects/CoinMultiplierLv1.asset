@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b3453976930d40a420aa36bbff64e, type: 3}
   m_Name: CoinMultiplierLv1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 4752124863906020370, guid: 59d1379c1d222c64bbecd9f9c09e5546, type: 3}
   level: 1
   description: CoinMultiplierLv1
   damage: 0

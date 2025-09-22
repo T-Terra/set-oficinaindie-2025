@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b3453976930d40a420aa36bbff64e, type: 3}
   m_Name: CloneLv1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -1602718986806802037, guid: 50f8a5baa3fc7674483d9646738608d1, type: 3}
   level: 1
   description: CloneLv1
   damage: 0.25
   clones: 1
+  increaseShield: 0
+  coinMultiplier: 0
   AbilityType: 2
