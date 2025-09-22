@@ -1,18 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class Archer : Enemy
 {
     [SerializeField] GameObject _projectilePrefab;
 
-    public override void OnMove(Vector2Int movement)
+    protected override IEnumerator MoveRoutine(Vector2Int movement)
     {
-        base.OnMove(movement);
+        yield return base.MoveRoutine(movement);
         OnAttack();
     }
 
-    public override void OnAttack()
+    protected override IEnumerator AttackRoutine()
     {
-        base.OnAttack();
+        yield return base.AttackRoutine();
         Shoot();
     }
 
