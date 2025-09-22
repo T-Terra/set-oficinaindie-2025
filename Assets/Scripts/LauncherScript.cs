@@ -44,6 +44,8 @@ public class LauncherScript : MonoBehaviour
 
     public void OnLaunch(InputAction.CallbackContext context)
     {
+        if (!canLaunch) return;
+
         if (context.started)
         {
             _isCharging = true;

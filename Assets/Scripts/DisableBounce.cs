@@ -17,7 +17,7 @@ public class DisableBounce : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent<Rigidbody2D>(out var ballBody))
-                ballBody.sharedMaterial.bounciness = 0f;
+                ballBody.sharedMaterial.bounciness = 1f;
         }
     }
 }
