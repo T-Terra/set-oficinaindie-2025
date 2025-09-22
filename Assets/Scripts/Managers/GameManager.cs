@@ -1,12 +1,21 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] TMP_Text Text_Health;
+    [SerializeField] TMP_Text Text_Coins;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        Text_Health.text = playerData.shield.ToString();
+        Text_Coins.text = playerData.coins.ToString();
     }
 
     public PlayerData playerData;
