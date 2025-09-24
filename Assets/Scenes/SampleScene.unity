@@ -4542,7 +4542,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 326870064}
         m_TargetAssemblyTypeName: PowerUpSelector, Assembly-CSharp
-        m_MethodName: RollPowerUp
+        m_MethodName: RerollPowerUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
