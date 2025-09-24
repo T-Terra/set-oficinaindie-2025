@@ -85,8 +85,15 @@ public class PowerUpSelector : MonoBehaviour
 
     public void RerollPowerUp()
     {
-        RollPowerUp();
-        GameManager.Instance.playerData.SpendCoins(priceReroll);
+        if (!GameManager.Instance.playerData.SpendCoins(priceReroll))
+        {
+            HandleRerollButton(false);
+        }
+        else
+        {
+            RollPowerUp();
+            GameManager.Instance.playerData.SpendCoins(priceReroll);
+        }
     }
 
     public void HandleRerollButton(bool enable)
@@ -94,7 +101,7 @@ public class PowerUpSelector : MonoBehaviour
         RollButtonObj.GetComponent<Button>().interactable = enable;
     }
 
-    public void DiseblePowerUpHud(bool enable)
+    public void DisablePowerUpHud(bool enable)
     {
         HUDPowerupObj.SetActive(enable);
 

@@ -59,7 +59,7 @@ public class PlayerData
         }
         else
         {
-            Debug.LogError("Not enough coins!");
+            //Debug.LogError("Not enough coins!");
             return false;
         }
     }

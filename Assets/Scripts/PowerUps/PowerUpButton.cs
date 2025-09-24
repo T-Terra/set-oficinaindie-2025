@@ -36,6 +36,6 @@ public class PowerUpButton : MonoBehaviour
         // aqui você pode aplicar o efeito no jogador, ex:
         PowerUpSelector.Instance.availablePowerUps.Remove(powerUpData);
         GameManager.Instance.playerData.AddPowerUpCard(powerUpData);
-        PowerUpSelector.Instance.DiseblePowerUpHud(false);
+        PowerUpSelector.Instance.DisablePowerUpHud(false);
     }
 }
