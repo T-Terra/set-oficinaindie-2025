@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : ScenesManagers
 {
     public void StartGame(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        LoadScenes(sceneName);
     }
 
     public void ExitGame()
